@@ -91,8 +91,12 @@ public class FluidGradientView: SystemView {
     public func update(speed: CGFloat) {
         cancellables.removeAll()
         self.speed = speed
-        guard speed > 0 else { return }
-        
+        guard speed > 0 else {
+            print("[Fluid] Gradient animations disabled")
+            return
+        }
+        print("[Fluid] Gradient animations enabled")
+
         let layers = (baseLayer.sublayers ?? []) + (highlightLayer.sublayers ?? [])
         for layer in layers {
             if let layer = layer as? BlobLayer {
