@@ -58,7 +58,8 @@ extension FluidGradient {
         func updateView(_ view: FluidGradientView, context: Context) {
             context.coordinator.create(blobs: blobs, highlights: highlights)
             DispatchQueue.main.async {
-                context.coordinator.update(speed: speed)
+                print("Requesting Gradient Update. Transaction: \(context.transaction)")
+                context.coordinator.update(speed: context.transaction.animation != nil ? 0 : speed)
             }
         }
         
